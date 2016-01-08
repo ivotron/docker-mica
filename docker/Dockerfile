@@ -14,4 +14,4 @@ RUN sed -i 's/PAGE_SIZE/PAGE_SIZES/' /pin/source/tools/mica/mica_init.cpp && \
     echo 'exec "$origin"/intel64/bin/pinbin -p32 "$origin"/ia32/bin/pinbin "${@}"' >> /pin/pin
 RUN make -C /pin/source/tools/mica
 
-ENTRYPOINT ["mv", "/pin", "/mnt"]
+ENTRYPOINT ["cp", "-r", "/pin", "/mnt"]

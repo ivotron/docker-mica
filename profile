@@ -72,6 +72,8 @@ fi
 if [ ! -d `pwd`/pin/source/tools/mica ] ; then
   echo "Unable to find mica folder. Will attempt to install it now."
 
+  mkdir -p `pwd`/pin/source/tools/mica
+
   docker run --rm -v `pwd`:/mnt ivotron/mica
 
   if [ ! -d `pwd`/pin/source/tools/mica ] ; then
@@ -231,7 +233,13 @@ fi
 # get number of processes (by getting the num of files that got generated)
 num_procs=`ls pin/source/tools/mica/ilp_full_int_*.out | wc -l`
 
-for p in `seq 0 $((num_procs-1))` ; do
+for p in `seq 1 $((num_procs-1))` ; do
+
+  # we start the sequence at 1 instead of 0, since the
+  # the first set of '*.out' files corresponds to the invocation
+  # of the shell in entrypoint_for_profiling.sh, i.e. p=0 is the 'sh -c'
+  # part of the arguments to pintool
+
   printf "${name},${p}," >> output.csv
 
   for atype in ilp itypes ppm reg stride memfootprint memreusedist ; do

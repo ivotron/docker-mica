@@ -12,7 +12,7 @@ rm -f *.out
 
 # execute pre-tasks
 if [ -n "$PRE" ] ; then
-  exec $PRE
+  $PRE
 fi
 
 # analyze main task

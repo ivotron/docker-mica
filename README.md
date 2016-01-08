@@ -18,14 +18,14 @@ To profile:
 
 Arguments:
 
-  * `r` whether to recompile MICA. When passed, `gcc, g++, make` 
-    should be available inside the container.
-  * `i` image name.
-  * `f` flags to be passed to `docker run`.
-  * `p` any commands that are executed prior to the one given in `-c`, 
-    which are _not_ profiled.
-  * `c` command to execute and profile.
-  * `n` name to associate to the output
+  * `r` - whether to recompile MICA. When given, `gcc`, `g++`, and 
+    `make` should be available inside the container.
+  * `i` - image name.
+  * `f` - flags to be passed to `docker run`.
+  * `p` - any commands that are executed prior to the one given in 
+    `-c`, which are _not_ profiled. This **shouldn't** execute `cd`.
+  * `c` - command to execute and profile.
+  * `n` - name to associate to the output
 
 
 For example, to profile `ls`:
