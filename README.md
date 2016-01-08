@@ -38,6 +38,11 @@ For example, to profile `ls`:
           -n ls
 ```
 
+For an example of the output generated (stored in `output.csv`) see 
+the [`examples/output_ls.csv`](examples/output_ls.csv) file. For a 
+description of each column, refer to the mica 
+[documentation](https://github.com/boegel/MICA/).
+
 If the `output.csv` file exists, `profile` won't rewrite it; it will 
 append rows to it instead.
 
