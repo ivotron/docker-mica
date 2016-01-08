@@ -1,0 +1,5 @@
+/pin
+*.sw?
+/.snapshots
+.ipynb_checkpoints
+/ansible/pin

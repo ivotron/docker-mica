@@ -1,0 +1,3 @@
+snapshots_path = .snapshots
+backend_type = posix
+
