@@ -1,0 +1,36 @@
+- hosts: all
+  vars:
+    install_docker: no
+  pre_tasks:
+  - name: assert preconditions
+    assert:
+      that:
+      - "ansible_distribution == 'Ubuntu'"
+      - "ansible_lsb.major_release|int >= 12"
+      - "ansible_kernel | version_compare('4.0', '<')"
+      - "profile_args is defined"
+
+  roles:
+  - role: angstwad.docker_ubuntu
+    when:
+    - install_docker|bool
+
+  tasks:
+
+# setup
+  - name: install jq
+    apt: name=jq state=present
+  - name: create folders
+    file: path=/tmp/mica state=directory mode=0755
+  - name: send mica files
+    copy: src={{ item }} dest=/tmp/mica/{{ item }} mode=0755
+    with_items:
+      - profile
+      - entrypoint_for_profiling.sh
+
+# profile
+  - name: execute profiling
+    command: ./profile {{ item }} chdir=/tmp/mica
+    with_items: profile_args
+  - name: retrieve profiles
+    fetch: src=/tmp/mica/output.csv dest=output.csv mode=0644
