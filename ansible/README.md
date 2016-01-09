@@ -6,8 +6,8 @@ the arguments to pass to `profile`. For example:
 ```bash
 ansible-playbook -e \
 '{ "profile_args": \
-   [ "-f \"--net=host\" -i debian:jessie -c \"ping google.com -c 2 \" -n ping, \
-     "-f \"-m 1G\"      -i debian:jessie -c \"stat / \"               -n stat \
+   [ "-f \"--net=host\" -i debian:jessie -c \"ping google.com -c 2 \" -n ping", \
+     "-f \"-m 1G\"      -i debian:jessie -c \"stat / \"               -n stat" \
    ]\
  }' playbook.yml
 ```

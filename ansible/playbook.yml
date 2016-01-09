@@ -34,3 +34,6 @@
     with_items: profile_args
   - name: retrieve profiles
     fetch: src=/tmp/mica/output.csv dest=output.csv mode=0644
+  - name: obtain normalized results
+    local_action: command docker run --rm -v `pwd`:/data --entrypoint=/data/normalize.py ivotron/jupyter-pd-mpl-h5
+    sudo: false
