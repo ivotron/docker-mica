@@ -33,7 +33,7 @@ For example, to profile `ls`:
 ```bash
 ./profile -i debian:jessie \
           -f "--rm --net=host" \
-          -p "cd /var" \
+          -p "sleep 5" \
           -c ls \
           -n ls
 ```
